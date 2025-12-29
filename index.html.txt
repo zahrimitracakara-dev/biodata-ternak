@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pendataan Biodata & Hewan Ternak</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .checkbox-group label {
+            font-weight: normal;
+            display: block;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #2ecc71;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #27ae60;
+        }
+        .result {
+            margin-top: 30px;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <h2>Form Pendataan Biodata & Hewan Ternak</h2>
+
+
+    <form id="ternakForm">
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama" required>
+
+
+        <label>Alamat</label>
+        <textarea id="alamat" rows="3"></textarea>
+
+
+        <label>No. HP / WhatsApp</label>
+        <input type="text" id="hp">
+
+
+        <label>Hewan Ternak yang Dimiliki</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" value="Ayam"> Ayam</label>
+            <label><input type="checkbox" value="Kelinci"> Kelinci</label>
+            <label><input type="checkbox" value="Kambing"> Kambing</label>
+            <label><input type="checkbox" value="Burung Merak"> Burung Merak</label>
+            <label><input type="checkbox" value="Burung Falk"> Burung Falk</label>
+            <label><input type="checkbox" value="Burung Jalak Suren"> Burung Jalak Suren</label>
+            <label><input type="checkbox" value="Burung Puter"> Burung Puter</label>
+            <label><input type="checkbox" value="Ikan Gurame"> Ikan Gurame</label>
+        </div>
+
+
+        <button type="submit">Simpan Data</button>
+    </form>
+
+
+    <div class="result" id="hasil" style="display:none;"></div>
+</div>
+
+
+<script>
+document.getElementById("ternakForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+
+    const nama = document.getElementById("nama").value;
+    const alamat = document.getElementById("alamat").value;
+    const hp = document.getElementById("hp").value;
+
+
+    const hewan = [];
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+        hewan.push(cb.value);
+    });
+
+
+    document.getElementById("hasil").style.display = "block";
+    document.getElementById("hasil").innerHTML = `
+        <h3>Data Tersimpan</h3>
+        <p><b>Nama:</b> ${nama}</p>
+        <p><b>Alamat:</b> ${alamat}</p>
+        <p><b>No. HP:</b> ${hp}</p>
+        <p><b>Hewan Ternak:</b> ${hewan.join(", ")}</p>
+    `;
+
+
+    this.reset();
+});
+</script>
+
+
+</body>
+</html>
+
